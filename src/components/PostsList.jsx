@@ -10,21 +10,24 @@ class PostsLists extends React.Component {
     this.state = {
       posts: []
     }
+    this.componentDidMount = this.componentDidMount.bind(this);
   }
 
   componentDidMount() {
     const itemsRef = firebase.database().ref('posts');
     itemsRef.on('value', (snapshot) => {
-      let posts = snapshot.val();
-      let newState = [];
+      var posts = snapshot.val();
+      var newState = [];
       for (let post in posts) {
         newState.push({
           id: post,
           name: posts[post].name,
           text: posts[post].text,
-          likes: posts[post].likes
+          likes: posts[post].likes,
+          date: posts[post].date
         });
-      }
+      };
+      newState.sort((a, b) => ( b.date - a.date ))
       this.setState({
         posts: newState
       });
@@ -36,7 +39,7 @@ class PostsLists extends React.Component {
       <ListGroup componentClass="ul">
           {this.state.posts.map((post) => {
             return (
-              <Post id={post.id} name={post.name} text={post.text} likes={post.likes}/>
+              <Post id={post.id} name={post.name} text={post.text} likes={post.likes} date={post.date}/>
             )
           })}
       </ListGroup>

@@ -5,21 +5,9 @@ import { CommentField } from './CommentField.jsx';
 
 class Post extends React.Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      name: props.name,
-      text: props.text,
-      likes: props.likes,
-      id: props.id,
-      comments: []
-    }
-    this.onLikeClick = this.onLikeClick.bind(this);
-  }
-
   onLikeClick() {
     const db = firebase.database();
-    db.ref(`posts/${this.state.id}`).update({ likes: this.state.likes + 1 });
+    db.ref(`posts/${this.props.id}`).update({ likes: this.props.likes + 1 });
   }
 
   render() {
@@ -28,12 +16,12 @@ class Post extends React.Component {
         <Panel.Heading>
         </Panel.Heading>
         <Panel.Body>
-           <CommentField name={this.state.name} text={this.state.text}/>
+           <CommentField name={this.props.name} text={this.props.text} date={this.props.date}/>
         </Panel.Body>
         <div class="pull-right pt-5">
           <ButtonGroup>
             <Button onClick={() => this.onLikeClick()}>
-              <span class="badge">{this.state.likes}</span> Like
+              <span class="badge">{this.props.likes}</span> Like
             </Button>
             <Button>
               Comment
