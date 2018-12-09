@@ -26,7 +26,7 @@ class NewPost extends React.Component {
   render() {
     return (
       <div>
-        <textarea type="text" id="newPostText" placeholder="Write an Announcment" rows="5" ref="newPost" className="form-control" />
+        <textarea type="text" id="newPostText" placeholder="Write a post" rows="5" ref="newPost" className="form-control" />
         <div class="text-right">
           <Button onClick={() => this.handleClick(document.getElementById('newPostText')) }>Post</Button>
         </div>

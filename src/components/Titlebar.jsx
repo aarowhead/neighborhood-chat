@@ -7,7 +7,7 @@ class TitleBar extends React.Component {
       <div>
         <div>
           <PageHeader>
-            Neighborhood Chat <small style={{ color: "#ffffff" }}>Fort Utah Neighborhood</small>
+            Neighborhood Chat <small}>Fort Utah Neighborhood</small>
           </PageHeader>
         </div>
       </div>
