@@ -1,14 +1,24 @@
 import React from 'react'
 import { Nav, NavItem } from 'react-bootstrap';
 
-function handleSelect(selectedKey) {
-  alert(`selected ${selectedKey}`);
-}
-
 class NavTabs extends React.Component {
+
+  constructor(props, context) {
+    super(props, context);
+    this.handleSelect = this.handleSelect.bind(this);
+    this.state = {
+      key: 1
+    };
+  }
+
+  handleSelect(selectedKey) {
+    this.props.on_tab_change(selectedKey);
+    this.setState({ key: selectedKey });
+  }
+
   render() {
     return (
-      <Nav bsStyle="tabs" activeKey={1} onSelect={handleSelect} justified>
+      <Nav bsStyle="pills" activeKey={this.state.key} onSelect={this.handleSelect} justified>
         <NavItem eventKey={1}>
           Announcements
         </NavItem>

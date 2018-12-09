@@ -4,9 +4,13 @@ import { PageHeader } from 'react-bootstrap';
 class TitleBar extends React.Component {
   render() {
     return (
-      <PageHeader>
-        Neighborhood Chat <small>Grandview Neighborhood</small>
-      </PageHeader>
+      <div>
+        <div>
+          <PageHeader>
+            Neighborhood Chat <small style={{ color: "#ffffff" }}>Fort Utah Neighborhood</small>
+          </PageHeader>
+        </div>
+      </div>
     );
   }
 }

@@ -10,10 +10,10 @@ class NewPost extends React.Component {
   }
 
   handleClick(postTextObject) {
-    const itemsRef = firebase.database().ref('posts');
+    const itemsRef = firebase.database().ref(this.props.post_path);
     const date = new Date().valueOf()
     const post = {
-      name: "Testing",
+      user: "12345",
       text: postTextObject.value,
       likes: 0,
       date: date
@@ -22,11 +22,12 @@ class NewPost extends React.Component {
     postTextObject.value = '';
   }
 
+  //TODO: make this textarea keep newlines etc.
   render() {
     return (
       <div>
-        <input type="text" id="newPostText" placeholder="Write an Announcment" ref="newPost" className="form-control" />
-        <div>
+        <textarea type="text" id="newPostText" placeholder="Write an Announcment" rows="5" ref="newPost" className="form-control" />
+        <div class="text-right">
           <Button onClick={() => this.handleClick(document.getElementById('newPostText')) }>Post</Button>
         </div>
       </div>
