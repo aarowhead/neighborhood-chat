@@ -117,17 +117,33 @@ class Container extends React.Component {
   render() {
     return (
       <div>
-        <TitleBar />
-        <NavTabs on_tab_change={(newTab) => {
-            this.setState({
-              currentTab: newTab,
-              posts: this.state.posts
-            })
-            console.log(this.state.posts);
-          }}
-        />
-        <NewPost post_path={this.getListPath()}/>
-        <PostsLists post_path={this.getListPath()} posts={this.getVisiblePosts()}/>
+        <div>
+          <TitleBar />
+          <Grid style={{ paddingTop: 70 }}>
+            <Row>
+              <Col md={2}>
+                <div class="affix" style={{ overflow: "hidden" }}>
+                  <div style={{ width: 180 }}>
+                    <img height={180} src="/images/WestJordanView.jpg" alt="thumbnail" />
+                  </div>
+                  <h3 style={{ marginTop: 5 }}>Fort Utah<br/>Neighborhood</h3>
+                  <NavTabs on_tab_change={(newTab) => {
+                      this.setState({
+                        currentTab: newTab,
+                        posts: this.state.posts
+                      })
+                      console.log(this.state.posts);
+                    }}
+                  />
+                </div>
+              </Col>
+              <Col md={10}>
+                <NewPost post_path={this.getListPath()}/>
+                <PostsLists post_path={this.getListPath()} posts={this.getVisiblePosts()}/>
+              </Col>
+            </Row>
+          </Grid>
+        </div>
       </div>
     );
   }

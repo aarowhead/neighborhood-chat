@@ -15,7 +15,7 @@ class CommentField extends React.Component {
     return (
       <Media>
         <Media.Left align="top">
-          <img width={64} height={64} src="/images/avatar.jpg" alt="thumbnail" />
+          <img width={64} height={64} src="/images/OregonWaterfallPic.jpg" alt="thumbnail" />
         </Media.Left>
         <Media.Body>
           <Media.Heading>{this.props.name}</Media.Heading>

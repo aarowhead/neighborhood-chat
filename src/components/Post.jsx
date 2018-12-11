@@ -1,5 +1,5 @@
 import React from 'react'
-import { Panel, Button, ButtonGroup, ListGroup, ListGroupItem } from 'react-bootstrap'
+import { Panel, Button, ButtonGroup, ListGroup, ListGroupItem, Media, Well } from 'react-bootstrap'
 import firebase from '../firebase.js'
 import { CommentField } from './CommentField.jsx';
 
@@ -33,50 +33,61 @@ class Post extends React.Component {
   render() {
     return (
       <div>
-        <Panel style={{ marginBottom: 0 }}>
+        <Panel>
+          <Panel.Heading style={{ paddingBottom: 0 }}>
+            <Media>
+              <Media.Left align="center">
+                <img width={32} height={32} src="/images/OregonWaterfallPic.jpg" alt="thumbnail" />
+              </Media.Left>
+              <Media.Body>
+                <Media.Heading style={{ marginBottom: 0, fontSize: 15 }}>{this.props.name}</Media.Heading>
+                  <p class="text-muted" style={{ fontSize: 12 }}>
+                    {new Date(this.props.date).toLocaleString()}
+                  </p>
+              </Media.Body>
+            </Media>
+          </Panel.Heading>
           <Panel.Body>
-             <CommentField name={this.props.name} text={this.props.text} date={this.props.date}/>
+            {this.props.text}
+            <div class="text-right">
+              <ButtonGroup bsSize="xsmall" style={{ margin: 0 }}>
+                <Button onClick={() => this.onLikeClick()}>
+                  <span class="badge">{this.props.likes}</span> Like
+                </Button>
+                <Button onClick={() => this.setState({ open: !this.state.open })}>
+                  <span class="badge">{this.props.comments.length}</span> View/Add Comments
+                </Button>
+              </ButtonGroup>
+            </div>
           </Panel.Body>
-          <Panel.Footer>
-          <div class="text-right">
-            <ButtonGroup bsSize="xsmall">
-              <Button onClick={() => this.onLikeClick()}>
-                <span class="badge">{this.props.likes}</span> Like
-              </Button>
-              <Button onClick={() => this.setState({ open: !this.state.open })}>
-                <span class="badge">{this.props.comments.length}</span> View/Add Comments
-              </Button>
-            </ButtonGroup>
-          </div>
-          </Panel.Footer>
-        </Panel>
-        <Panel id={"collapsiblePanel" + this.props.id} expanded={this.state.open} style={{ marginTop: 0 }}>
-          <Panel.Collapse>
-            <Panel.Body>
-            <ListGroup>
-              {this.props.comments.sort((a, b) => a.date - b.date ).map((comment) => {
-                return (
-                  <div>
-                    <ListGroupItem header={comment.user}>
-                      <p class="text-muted">
-                        {new Date(comment.date).toLocaleString()}
-                      </p>
-                      <p>
-                        {comment.text}
-                      </p>
-                    </ListGroupItem>
-                  </div>
-                )
-              })}
-              <div>
-                <textarea type="text" id={"newComment" + this.props.id} placeholder="Comment" ref="newComment" className="form-control" />
-                <div class="text-right">
-                  <Button onClick={() => this.onPostCommentClick(document.getElementById("newComment" + this.props.id)) }>Add Comment</Button>
-                </div>
-              </div>
-            </ListGroup>
-            </Panel.Body>
-          </Panel.Collapse>
+          <Panel id={"collapsiblePanel" + this.props.id} expanded={this.state.open} style={{ margin: 0, border: 0 }}>
+            <Panel.Collapse>
+              <Panel.Body>
+                <ListGroup>
+                  {this.props.comments.sort((a, b) => a.date - b.date ).map((comment) => {
+                    return (
+                      <div>
+                        <ListGroupItem style={{ border: 0, paddingRight: 0, paddingBottom: 0 }}>
+                          <p style={{ margin: 0 }}>
+                            {comment.user} <small class="text-muted"> {new Date(comment.date).toLocaleString()} </small>
+                          </p>
+                          <Well style={{ marginBottom: 0, padding: 5 }}>
+                            {comment.text}
+                          </Well>
+                        </ListGroupItem>
+                      </div>
+                    )
+                  })}
+                  <ListGroupItem style={{ border: 0, paddingRight: 0 }}>
+                    <textarea type="text" id={"newComment" + this.props.id} placeholder="Comment" ref="newComment" className="form-control" />
+                    <div class="text-right">
+                      <Button onClick={() => this.onPostCommentClick(document.getElementById("newComment" + this.props.id)) }>Add Comment</Button>
+                    </div>
+                  </ListGroupItem>
+                </ListGroup>
+              </Panel.Body>
+            </Panel.Collapse>
+          </Panel>
         </Panel>
       </div>
     );
