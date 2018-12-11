@@ -10,6 +10,7 @@ class Post extends React.Component {
     this.state = {
       open: false
     }
+    this.getImagePath = this.getImagePath.bind(this)
   }
 
   onLikeClick() {
@@ -30,6 +31,20 @@ class Post extends React.Component {
     postCommentObject.value = '';
   }
 
+  getImagePath(screen_name) {
+    if (screen_name === "Aaron Hill") {
+      return "/images/OregonWaterfallPic.jpg";
+    } else if (screen_name === "Maria Santos") {
+      return "/images/user1.jpg";
+    } else if (screen_name === "Sabrina Adams") {
+      return "/images/user2.jpg";
+    } else if (screen_name === "Phil Uhl") {
+      return "/images/user3.jpg";
+    } else {
+      return "/images/avatar.jpg";
+    }
+  }
+
   render() {
     return (
       <div>
@@ -37,7 +52,7 @@ class Post extends React.Component {
           <Panel.Heading style={{ paddingBottom: 0 }}>
             <Media>
               <Media.Left align="center">
-                <img width={32} height={32} src="/images/OregonWaterfallPic.jpg" alt="thumbnail" />
+                <img width={32} height={32} src={this.getImagePath(this.props.name)} alt="thumbnail" />
               </Media.Left>
               <Media.Body>
                 <Media.Heading style={{ marginBottom: 0, fontSize: 15 }}>{this.props.name}</Media.Heading>
