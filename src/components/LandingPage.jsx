@@ -27,8 +27,10 @@ class LandingPage extends React.Component {
         <div style={{ backgroundImage: "url(../images/SanFransiscoNeighborhood.jpg)", backgroundSize: "100%", height: "100vh" }}>
           <Jumbotron style={{
               backgroundColor: "rgba(255, 255, 255, 0.8)",
-              padding: 200,
-              textAlign: "center"
+              paddingTop: 200,
+              textAlign: "center",
+              height: "100vh",
+              width: "100vw"
             }}>
             <h1>Welcome!</h1>
             <p>
