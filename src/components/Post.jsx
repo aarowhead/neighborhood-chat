@@ -96,7 +96,7 @@ class Post extends React.Component {
                   <ListGroupItem style={{ border: 0, paddingRight: 0 }}>
                     <textarea type="text" id={"newComment" + this.props.id} placeholder="Comment" ref="newComment" className="form-control" />
                     <div class="text-right">
-                      <Button onClick={() => this.onPostCommentClick(document.getElementById("newComment" + this.props.id)) }>Add Comment</Button>
+                      <Button style={{ marginTop: 5 }} onClick={() => this.onPostCommentClick(document.getElementById("newComment" + this.props.id)) }>Add Comment</Button>
                     </div>
                   </ListGroupItem>
                 </ListGroup>

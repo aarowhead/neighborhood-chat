@@ -39,6 +39,12 @@ class NewPost extends React.Component {
               color: white;
               border-color: #004400;
             }
+
+            .btn-primary:focus {
+              background-color: #004400;
+              color: white;
+              border-color: #004400;
+            }
         `}
         </style>
         <div style={{ marginTop: 0, marginBottom: 10 }}>
